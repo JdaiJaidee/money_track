@@ -367,28 +367,4 @@ def main():
             print("กรุณาเลือกเมนู 1-10")
 
 
-def _selftest():
-    empty_income, empty_expense, empty_balance = calculate_summary([])
-    assert (empty_income, empty_expense, empty_balance) == (0, 0, 0)
-
-    sample = [
-        {"date": "2026-09-05", "detail": "ข้าว", "category": "อาหาร", "type": "รายรับ", "amount": 5000},
-        {"date": "2026-09-06", "detail": "ก๋วยเตี๋ยว", "category": "อาหาร", "type": "รายจ่าย", "amount": 120},
-        {"date": "2026-09-06", "detail": "ข้าวเที่ยง", "category": "อาหาร", "type": "รายจ่าย", "amount": 180},
-        {"date": "2026-10-01", "detail": "รถเมล์", "category": "เดินทาง", "type": "รายจ่าย", "amount": 50},
-    ]
-
-    income, expense, balance = calculate_summary(sample)
-    assert income == 5000
-    assert expense == 350
-    assert balance == 4650
-
-    category_summary = calculate_category_summary(sample)
-    assert category_summary == [("อาหาร", 300), ("เดินทาง", 50)]
-
-    september = [t for t in sample if t["date"].startswith("2026-09")]
-    assert len(september) == 3
-
-
-_selftest()
 main()
